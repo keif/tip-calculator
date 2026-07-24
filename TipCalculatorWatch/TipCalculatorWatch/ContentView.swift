@@ -66,7 +66,11 @@ struct ContentView: View {
                     .padding(.horizontal, 8)
                 }
             }
-            .ignoresSafeArea()
+            // Ignore only the bottom edge so the keypad can reach the bottom of
+            // the screen. The top safe area is left intact on purpose: watchOS
+            // draws the system clock there, and ignoring it caused the right-
+            // aligned amount to render underneath the time on larger watches.
+            .ignoresSafeArea(edges: .bottom)
             .toolbar(.hidden)
             .navigationBarHidden(true)
             .navigationDestination(isPresented: $showingResults) {
