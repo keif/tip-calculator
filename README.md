@@ -94,23 +94,37 @@ tap-through to rounding settings. The Xcode project is generated from
 - Xcode with a watchOS SDK (deployment target: watchOS 10.0)
 - [XcodeGen](https://github.com/yonaskolb/XcodeGen) (`brew install xcodegen`)
 
-### Build and run on a simulator
+### Build and run
+
+First generate the project (only needed after changing `project.yml`):
 
 ```bash
 cd TipCalculatorWatch
 xcodegen generate
+```
 
+**Easiest — Xcode:** open `TipCalculatorWatch.xcodeproj`, pick any Apple Watch
+simulator from the scheme dropdown, and hit Run. Xcode boots the simulator,
+installs, and launches in one step. When building for a device, set your team
+under **Signing & Capabilities** first.
+
+**From the command line:** build, then install onto a *booted* simulator. Note
+that `simctl install`/`launch` require the target to be running, so boot one
+first and address it with `booted` rather than hard-coding a watch model (device
+names change with each Xcode release — run `xcrun simctl list devices available`
+to see what you have):
+
+```bash
 xcodebuild -project TipCalculatorWatch.xcodeproj -target TipCalculatorWatch \
   -sdk watchsimulator -arch arm64 build
 
-xcrun simctl install "Apple Watch Series 10 (46mm)" \
-  "build/Debug-watchsimulator/Tip Calculator.app"
-xcrun simctl launch "Apple Watch Series 10 (46mm)" com.tipcalculator.watchapp
-```
+# Boot a watch simulator (pick any available model), then show the Simulator UI
+xcrun simctl boot "Apple Watch Series 11 (46mm)"
+open -a Simulator
 
-You can also open the generated `TipCalculatorWatch.xcodeproj` in Xcode and run it
-against a simulator or device directly. When building for a device, set your team
-under **Signing & Capabilities** first.
+xcrun simctl install booted "build/Debug-watchsimulator/Tip Calculator.app"
+xcrun simctl launch booted com.tipcalculator.watchapp
+```
 
 ---
 
