@@ -118,4 +118,4 @@ under **Signing & Capabilities** first.
 
 Early proof of concept. Both apps implement the full calculation flow; remaining
 work (App Store prep, app icon, cross-device watch layout polish, tests) is tracked
-in [`DEVELOPMENT_PLAN.md`](DEVELOPMENT_PLAN.md) and the session notes under `_notes/`.
+in [`DEVELOPMENT_PLAN.md`](DEVELOPMENT_PLAN.md).
