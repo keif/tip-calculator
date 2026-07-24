@@ -87,7 +87,9 @@ A standalone watchOS app ("Just Jason's Tip") with a Calculator-style keypad for
 entering the bill, the Digital Crown for adjusting the tip percentage, and a
 tap-through to rounding settings. The Xcode project is generated from
 [`TipCalculatorWatch/project.yml`](TipCalculatorWatch/project.yml) with
-[XcodeGen](https://github.com/yonaskolb/XcodeGen).
+[XcodeGen](https://github.com/yonaskolb/XcodeGen) — `project.yml` is the source
+of truth and the generated `.xcodeproj` is not checked in, so you generate it
+locally after cloning.
 
 ### Prerequisites
 
@@ -96,7 +98,8 @@ tap-through to rounding settings. The Xcode project is generated from
 
 ### Build and run
 
-First generate the project (only needed after changing `project.yml`):
+Generate the Xcode project first. This is required after cloning (the
+`.xcodeproj` is gitignored) and any time you change `project.yml`:
 
 ```bash
 cd TipCalculatorWatch
